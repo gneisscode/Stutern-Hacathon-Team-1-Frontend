@@ -13,13 +13,13 @@ import Link from "next/link";
 
 export default function SignIn() {
   return (
-    <div className="flex flex-col items-center p-[82px] w-[100%] min-h-[100vh]">
-      <Card className="w-[50%] flex flex-col items-center">
-        <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[80%]">
+    <div className="flex flex-col items-center py-8 lg:py-0 lg:p-[82px] w-[100%] min-h-[100vh]">
+      <Card className=" w-[90%] lg:w-[50%] flex flex-col items-center">
+        <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[100%]">
           <CardTitle>Sign In</CardTitle>
           <CardDescription>Welcome back!</CardDescription>
         </CardHeader>
-        <CardContent className="w-[80%]">
+        <CardContent className="w-[100%]">
           <form action="submit" className="flex flex-col gap-8 w-[100%]">
             <div className="flex flex-col w-full gap-2">
               <Label htmlFor="email">Email</Label>
