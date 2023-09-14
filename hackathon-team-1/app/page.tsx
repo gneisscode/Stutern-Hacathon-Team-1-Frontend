@@ -1,3 +1,4 @@
+import Scan from "@/components/shared/Scan";
 import Link from "next/link";
 
 
@@ -19,6 +20,8 @@ export default function Home() {
       <Link href={"/auth/reset-password"} className="text-blue-500">
         Reset Password
       </Link>
+
+      <Scan />
     </div>
   );
 }
