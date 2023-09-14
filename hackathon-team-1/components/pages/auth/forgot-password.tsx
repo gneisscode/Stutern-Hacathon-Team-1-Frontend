@@ -11,11 +11,11 @@ import { Label } from "@/components/ui/label";
 
 export default function ForgotPassword() {
   return (
-    <div className="flex flex-col items-center py-8 lg:py-0 lg:p-[82px] w-[100%] min-h-[100vh]">
-      <Card className="w-[90%] flex flex-col items-center pb-8">
+    <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
+      <Card className="w-[90%] lg:w-[40%] flex flex-col items-center pb-8 lg:px-4">
         <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[100%]">
           <CardTitle>Forgot Password</CardTitle>
-          <CardDescription>
+          <CardDescription className="text-center">
             Please enter your email to reset your password
           </CardDescription>
         </CardHeader>

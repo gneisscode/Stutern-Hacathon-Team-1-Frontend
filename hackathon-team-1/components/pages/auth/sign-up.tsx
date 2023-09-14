@@ -13,8 +13,8 @@ import Link from "next/link";
 
 export default function SignUp() {
   return (
-    <div className="flex flex-col items-center py-8 lg:py-0 lg:p-[82px] w-[100%] min-h-[100vh]">
-      <Card className=" w-[90%] lg:w-[50%] flex flex-col items-center">
+    <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
+      <Card className=" w-[90%] lg:w-[40%] flex flex-col items-center lg:px-4">
         <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[100%]">
           <CardTitle>Sign Up</CardTitle>
           <CardDescription>Create an account to get started!</CardDescription>

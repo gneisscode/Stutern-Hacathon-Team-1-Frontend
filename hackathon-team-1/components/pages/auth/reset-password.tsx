@@ -12,11 +12,11 @@ import { Label } from "@/components/ui/label";
 
 export default function ResetPassword() {
   return (
-    <div className="flex flex-col items-center py-8 lg:py-0 lg:p-[82px] w-[100%] min-h-[100vh]">
-      <Card className="w-[90%] flex flex-col items-center pb-8">
+    <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
+      <Card className="w-[90%] lg:w-[40%] flex flex-col items-center pb-8 lg:px-4">
         <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[80%]">
           <CardTitle>Reset Password</CardTitle>
-          <CardDescription>Please confirm your new password</CardDescription>
+          <CardDescription className="text-center">Please confirm your new password</CardDescription>
         </CardHeader>
         <CardContent className="w-[100%]">
           <form action="submit" className="flex flex-col gap-8 w-[100%]">
