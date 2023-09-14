@@ -28,7 +28,10 @@ export default function SignIn() {
             <div className="flex flex-col w-full gap-2 mb-8">
               <Label htmlFor="password">Password</Label>
               <Input type="password" id="password" placeholder="Password" />
-              <Link href={"/auth/forgot-password"} className="self-end text-blue-500">
+              <Link
+                href={"/auth/forgot-password"}
+                className="self-end text-blue-500"
+              >
                 <p>Forgot password</p>
               </Link>
             </div>
@@ -39,7 +42,7 @@ export default function SignIn() {
         </CardContent>
         <CardFooter>
           <p>
-            Don't have an account?
+            Don&apos;t have an account?
             <Link href={"/auth/sign-up"} className="text-blue-500">
               &nbsp;Sign up
             </Link>
