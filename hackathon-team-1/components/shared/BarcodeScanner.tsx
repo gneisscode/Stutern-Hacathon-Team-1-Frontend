@@ -20,8 +20,8 @@ const BarcodeScanner: React.FC<QuaggaJSScannerProps> = ({onDetected}) => {
          type: "LiveStream",
         //  target: document.querySelector("#your-video-element"), // Replace with your video element
          constraints: {
-           width: 300,
-           height: 280,
+           width: 640,
+           height: 480,
            facingMode: "environment", // or user
          },
        },
@@ -50,7 +50,7 @@ const BarcodeScanner: React.FC<QuaggaJSScannerProps> = ({onDetected}) => {
  return () => {
    Quagga.offDetected(_onDetected);
  };
- }, [onDetected]);
+ }, []);
 
  // JSX for your component
  return (

@@ -16,9 +16,9 @@ const Scan = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center w-[100%]">
       <button onClick={toggleScanning}>{scanning ? "Stop" : "Start Scanning"}</button>
-      <ul className="results">
+      <ul className="results self-center flex flex-col w-[300px] justify-center items-center">
         {results.map((result: any) => (
           <Result key={result.codeResult.code} result={result} />
         ))}

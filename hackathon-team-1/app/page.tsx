@@ -24,9 +24,8 @@ export default function Home() {
         Reset Password
       </Link>
 
-      <div className="flex flex-col justify-center items-center w-[90%] lg:w-[50%] h-fit">
+     
         <Scan /> 
-      </div>
     </div>
   );
 }

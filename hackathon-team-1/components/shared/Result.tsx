@@ -16,7 +16,7 @@ const Result: React.FC<ResultProps> = ({ result }) => {
 
   return (
     <li>
-      {result.codeResult.code} [{result.codeResult.format}]
+      Barcode: {result.codeResult.code} [{result.codeResult.format}]
     </li>
   );
 };
