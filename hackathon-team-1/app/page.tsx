@@ -5,7 +5,10 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex flex-col gap-2 justify-center items-center p-8">
-      <div className=" text-[22px] lg:text-[42px] font-bold"> Welcome to Home</div>
+      <div className=" text-[22px] lg:text-[42px] font-bold">
+        {" "}
+        Welcome to Home
+      </div>
       <Link href={"/auth/sign-in"} className="text-blue-500">
         Sign In
       </Link>
@@ -21,7 +24,9 @@ export default function Home() {
         Reset Password
       </Link>
 
-      <Scan />
+      <div className="flex flex-col justify-center items-center w-[90%] lg:w-[50%] h-fit">
+        <Scan /> 
+      </div>
     </div>
   );
 }
