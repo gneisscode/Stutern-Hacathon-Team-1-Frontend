@@ -1,6 +1,9 @@
+"use client"
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { MantineProvider } from "@mantine/core";
+import { ContextProvider } from '@/context/Context';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <ContextProvider>
+          <body className={inter.className}>{children}</body>
+        </ContextProvider>
+      </MantineProvider>
     </html>
-  )
+  );
 }
