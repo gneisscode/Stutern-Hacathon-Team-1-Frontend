@@ -43,8 +43,8 @@ const UserLayout = ({children}:any) => {
         >
           {nav.map((i, index) => {
             return (
-              <Link href={i.path}>
-                <Text key={index}>{i.item}</Text>
+              <Link href={i.path} key={index}>
+                <Text>{i.item}</Text>
               </Link>
             );
           })}

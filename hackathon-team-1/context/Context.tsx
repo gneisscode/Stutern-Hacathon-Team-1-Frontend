@@ -9,8 +9,14 @@ type TState= {
     
 }
 
+const userFromLocalStorage =
+  typeof window !== "undefined"
+    ? JSON.parse(localStorage.getItem("user") as string) || null
+    : null;
+
+
 const INITIAL_STATE:TState = {
-  user: JSON.parse(localStorage.getItem("user") as any) || null,
+  user:userFromLocalStorage ,
   isFetching: false,
   error: false,
 };
@@ -21,7 +27,9 @@ export const ContextProvider = ({ children }:any) => {
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(state.user));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(state.user));
+      }
   
   }, [state.user]);
 
