@@ -24,8 +24,15 @@ export default function Home() {
         Reset Password
       </Link>
 
-     
-        <Scan /> 
+      <Link href={"/user/inventory-overview"} className="text-blue-500">
+        User Dashboard
+      </Link>
+
+      <Link href={"/user/all-products"} className="text-blue-500">
+       All products view -Dashboard
+      </Link>
+
+      <Scan />
     </div>
   );
 }
