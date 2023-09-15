@@ -7,10 +7,7 @@ import { ContextProvider } from '@/context/Context';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'Inventory Management',
-  description: 'Automated management system',
-}
+
 
 export default function RootLayout({
   children,
@@ -19,6 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="description" content='Automated management system'/>
+        <meta name="title" content='Inventory Management' />
+      </head>
       <MantineProvider withGlobalStyles withNormalizeCSS>
         <ContextProvider>
           <body className={inter.className}>{children}</body>
