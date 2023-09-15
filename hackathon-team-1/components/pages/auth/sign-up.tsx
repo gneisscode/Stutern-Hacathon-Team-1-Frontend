@@ -14,8 +14,14 @@ import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { axiosWithoutToken } from "@/utils/axios";
+
 
 export default function SignUp() {
+  const router = useRouter();
+
   const defaultValues = {
     name: "",
     surname: "",
@@ -45,12 +51,27 @@ export default function SignUp() {
      resolver: yupResolver(validationSchema),
    });
 
-   const onSubmit = () => {
-     console.log("Submitted");
-     // This function will be called when the form is submitted with valid data
+   
+ const signupRequest = async () => {
+   try {
+     const response = await axiosWithoutToken.post("/user/signup", getValues());
+     console.log(response.data);
+   } catch (error: any) {
+     console.log(error);
+     throw new Error(error?.response?.data?.message || "An error occurred");
+   }
+ };
 
-     // Add your sign-in logic here, e.g., making an API request
-   };
+  const mutation: any = useMutation(signupRequest, {
+    onSuccess: (res: any) => {
+      console.log(res?.data);
+      if (res?.data) {
+        router.push("/auth/sign-in");
+      }
+    },
+  });
+
+  const onSubmit = () => mutation.mutate();
 
 
   return (
@@ -61,22 +82,19 @@ export default function SignUp() {
           <CardDescription>Create an account to get started!</CardDescription>
         </CardHeader>
         <CardContent className="w-[100%]">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-8 w-[100%]"
-          >
+          {mutation.isError && (
+            <p className="text-center pb-2 text-red-500">
+              {mutation?.error?.message || "An error occured during sign up"}
+            </p>
+          )}
+          <form action="submit" className="flex flex-col gap-8 w-[100%]">
             <div className="flex flex-col w-full gap-2">
               <Label htmlFor="name">Name</Label>
               <Controller
                 name="name"
                 control={control}
                 render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="name"
-                    id="name"
-                    placeholder="Name"
-                  />
+                  <Input {...field} type="name" id="name" placeholder="Name" />
                 )}
               />
               {errors.name && (
@@ -139,10 +157,14 @@ export default function SignUp() {
               )}
             </div>
 
-            <Button variant="default" type="submit">
+            <Button
+              variant="default"
+              type="submit"
+              onClick={handleSubmit(onSubmit)}
+              disabled={mutation.isLoading}
+            >
               Sign up
             </Button>
-            <Button variant="outline">Sign up with google</Button>
           </form>
         </CardContent>
         <CardFooter>

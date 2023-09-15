@@ -12,6 +12,8 @@ import { Label } from "@/components/ui/label";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useMutation } from "@tanstack/react-query";
+import { axiosWithoutToken } from "@/utils/axios";
 
 export default function ForgotPassword() {
 
@@ -37,12 +39,27 @@ export default function ForgotPassword() {
      resolver: yupResolver(validationSchema),
    });
 
-   const onSubmit = () => {
-     console.log("Submitted");
-     // This function will be called when the form is submitted with valid data
 
-     // Add your sign-in logic here, e.g., making an API request
-   };
+   
+ const forgotPasswordRequest = async () => {
+   try {
+     const response = await axiosWithoutToken.post("/user/forgotpassword", getValues());
+     console.log(response.data);
+   } catch (error:any) {
+     console.log(error);
+     throw new Error(error?.response?.data?.message || "An error occurred");
+   }
+ };
+   const mutation: any = useMutation(forgotPasswordRequest, {
+     onSuccess: (res: any) => {
+       console.log(res?.data);
+       if (res?.data) {
+         console.log("email sent!")
+       }
+     },
+   });
+
+   const onSubmit = () => mutation.mutate();
   return (
     <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
       <Card className="w-[90%] lg:w-[40%] flex flex-col items-center pb-8 lg:px-4">
@@ -53,7 +70,12 @@ export default function ForgotPassword() {
           </CardDescription>
         </CardHeader>
         <CardContent className="w-[100%] mt-4">
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 w-[100%]">
+          {mutation.isError && (
+            <p className="text-center pb-2 text-red-500">
+              {mutation?.error?.message || "An error occured during sign up"}
+            </p>
+          )}
+          <form action="submit" className="flex flex-col gap-8 w-[100%]">
             <div className="flex flex-col w-full gap-2">
               <Label htmlFor="email">Email</Label>
               <Controller
@@ -72,7 +94,14 @@ export default function ForgotPassword() {
                 <p className="text-red-500">{errors.email?.message}</p>
               )}
             </div>
-            <Button variant="default" type="submit">Send recovery link</Button>
+            <Button
+              variant="default"
+              type="submit"
+              onClick={handleSubmit(onSubmit)}
+              disabled={mutation.isLoading}
+            >
+              Send recovery link
+            </Button>
           </form>
         </CardContent>
       </Card>

@@ -4,15 +4,16 @@ import Reducer from "./Reducer";
 
 
 type TState= {
-    user: string | null
+    user: any | null
     isFetching: Boolean,
     error: Boolean,
+    dispatch?: any
     
 }
 
 const userFromLocalStorage =
   typeof window !== "undefined"
-    ? JSON.parse(localStorage.getItem("user") as string) || null
+    ? JSON.parse(localStorage.getItem("user") as any) || null
     : null;
 
 
@@ -40,6 +41,7 @@ export const ContextProvider = ({ children }:any) => {
         user: state.user,
         isFetching: state.isFetching,
         error: state.error,
+        dispatch,
       }}
     >
       {children}
