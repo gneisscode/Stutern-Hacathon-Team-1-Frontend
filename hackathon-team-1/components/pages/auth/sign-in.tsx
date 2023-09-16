@@ -54,6 +54,11 @@ const { dispatch} = useContext(Context);
    try {
      const response = await axiosWithoutToken.post("/user/login", getValues());
      console.log(response.data);
+     dispatch({ type: "LOGIN_SUCCESS", payload: response?.data });
+     if(typeof window !== "undefined"){
+      window.location.href = "/user/inventory-overview";
+
+     }
    } catch (error: any) {
     console.log(error);
      dispatch({ type: "LOGIN_FAILURE" });
@@ -64,10 +69,10 @@ const { dispatch} = useContext(Context);
  const mutation: any = useMutation(loginRequest, {
    onSuccess: (res: any) => {
      console.log(res?.data);
-     if (res?.data) {
-       dispatch({ type: "LOGIN_SUCCESS", payload: res?.data });
-       router.push("/user/all-products");
-     }
+    //  if (res?.data) {
+    //    dispatch({ type: "LOGIN_SUCCESS", payload: res?.data });
+    //    router.push("/user/all-products");
+    //  }
    },
  });
 
