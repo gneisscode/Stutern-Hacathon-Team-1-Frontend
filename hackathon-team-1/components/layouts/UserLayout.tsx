@@ -49,7 +49,7 @@ const UserLayout = ({ children }: any) => {
           hiddenBreakpoint="sm"
           hidden={!opened}
           width={{ sm: 200, lg: 300 }}
-          className="text-white bg-[#0f172aff] flex flex-col"
+          className="text-white bg-[#0f172aff] flex flex-col gap-8"
         >
           {nav.map((i, index) => {
             const isActive = pathname === i.path;
@@ -68,10 +68,13 @@ const UserLayout = ({ children }: any) => {
             );
           })}
 
-          <div className="mt-auto flex gap-2 items-center font-semibold text-[16px]">
+          <Link
+            href={"/"}
+            className="mt-auto flex gap-2 items-center font-semibold text-[16px]"
+          >
             <Logout />
             Logout
-          </div>
+          </Link>
         </Navbar>
       }
       // aside={
@@ -114,10 +117,11 @@ const UserLayout = ({ children }: any) => {
                 mr="xl"
               />
             </MediaQuery>
-
-            <Text className="lg:text-[32px] font-bold text-blue-500">
-            Diadem✅
-            </Text>
+            <Link href={"/"}>
+              <Text className="lg:text-[32px] font-bold text-white">
+                Diadem🗂️
+              </Text>
+            </Link>
 
             <div className="w-[30%] lg:w-[40%]">
               <Input

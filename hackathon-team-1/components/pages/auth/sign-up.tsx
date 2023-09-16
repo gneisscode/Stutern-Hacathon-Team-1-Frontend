@@ -17,6 +17,7 @@ import * as yup from "yup";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { axiosWithoutToken } from "@/utils/axios";
+import { Loader } from "@mantine/core";
 
 
 export default function SignUp() {
@@ -83,6 +84,11 @@ export default function SignUp() {
 
   return (
     <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
+      <Link href={"/"}>
+        <div className="lg:text-[32px] font-bold text-[#0f172aff] mb-8">
+          Diadem🗂️
+        </div>
+      </Link>
       <Card className=" w-[90%] lg:w-[40%] flex flex-col items-center lg:px-4">
         <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[100%]">
           <CardTitle>Sign Up</CardTitle>
@@ -215,6 +221,9 @@ export default function SignUp() {
               onClick={handleSubmit(onSubmit)}
               disabled={mutation.isLoading}
             >
+              {mutation.isLoading && (
+                <Loader variant="dots" size="md" className="mr-2" />
+              )}
               Sign up
             </Button>
           </form>

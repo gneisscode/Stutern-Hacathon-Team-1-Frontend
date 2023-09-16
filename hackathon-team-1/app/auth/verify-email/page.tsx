@@ -1,9 +1,9 @@
+import VerifyEmail from '@/components/pages/auth/verify-email'
+import { NextPage } from 'next'
 import React from 'react'
 
-const VerifyEmail = () => {
-  return (
-    <div>VerifyEmail</div>
-  )
+const VerifyEmailPage: NextPage = () => {
+  return <VerifyEmail />
 }
 
-export default VerifyEmail
+export default VerifyEmailPage

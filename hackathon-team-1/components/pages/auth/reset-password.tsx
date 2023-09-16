@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Link from "next/link";
 
 
 export default function ResetPassword() {
@@ -48,6 +49,11 @@ export default function ResetPassword() {
   };
   return (
     <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
+      <Link href={"/"}>
+        <div className="lg:text-[32px] font-bold text-[#0f172aff] mb-8">
+          Diadem🗂️
+        </div>
+      </Link>
       <Card className="w-[90%] lg:w-[40%] flex flex-col items-center pb-8 lg:px-4">
         <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[80%]">
           <CardTitle>Reset Password</CardTitle>
@@ -56,8 +62,10 @@ export default function ResetPassword() {
           </CardDescription>
         </CardHeader>
         <CardContent className="w-[100%]">
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 w-[100%]">
-
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-8 w-[100%]"
+          >
             <div className="flex flex-col w-full gap-2">
               <Label htmlFor="newPassword">New Password</Label>
               <Controller
@@ -92,10 +100,14 @@ export default function ResetPassword() {
                 )}
               />
               {errors.confirmPassword && (
-                <p className="text-red-500">{errors.confirmPassword?.message}</p>
+                <p className="text-red-500">
+                  {errors.confirmPassword?.message}
+                </p>
               )}
             </div>
-            <Button variant="default" type="submit">Reset Password</Button>
+            <Button variant="default" type="submit">
+              Reset Password
+            </Button>
           </form>
         </CardContent>
       </Card>

@@ -1,11 +1,11 @@
 "use client";
 import "./globals.css";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { Inter } from "next/font/google";
+import { Inter,DM_Sans } from "next/font/google";
 import { MantineProvider } from "@mantine/core";
 import { ContextProvider } from "@/context/Context";
 
-const inter = Inter({ subsets: ["latin"] });
+const dm_sans = DM_Sans({ subsets: ["latin"] });
 
 const queryClient = new QueryClient();
 
@@ -23,7 +23,7 @@ export default function RootLayout({
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
           <MantineProvider withGlobalStyles withNormalizeCSS>
-            <body className={inter.className}>{children}</body>
+            <body className={dm_sans.className}>{children}</body>
           </MantineProvider>
         </QueryClientProvider>
       </ContextProvider>

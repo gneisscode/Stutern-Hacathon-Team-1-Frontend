@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Card,
   CardContent,
@@ -15,53 +15,36 @@ import * as yup from "yup";
 import { useMutation } from "@tanstack/react-query";
 import { axiosWithoutToken } from "@/utils/axios";
 import Link from "next/link";
-import { Loader } from "@mantine/core";
 
-export default function ForgotPassword() {
+export default function VerifyEmail() {
+  const defaultValues = {
+    email: "",
+    otp: "",
+  };
 
-   const defaultValues = {
-     email: "",
-   };
+  const validationSchema = yup.object().shape({
+    email: yup
+      .string()
+      .email("Enter a valid email")
+      .required("Enter your email"),
+    otp: yup
+      .string()
+      .required("Enter one time pin"),
+  });
 
-   const validationSchema = yup.object().shape({
-     email: yup
-       .string()
-       .email("Enter a valid email")
-       .required("Enter your email"),
-   });
-
-   const {
-     getValues,
-     control,
-     handleSubmit,
-     setError,
-     formState: { errors },
-   } = useForm({
-     defaultValues,
-     resolver: yupResolver(validationSchema),
-   });
+  const {
+    getValues,
+    control,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(validationSchema),
+  });
 
 
-   
- const forgotPasswordRequest = async () => {
-   try {
-     const response = await axiosWithoutToken.post("/user/forgotpassword", getValues());
-     console.log(response.data);
-   } catch (error:any) {
-     console.log(error);
-     throw new Error(error?.response?.data?.message || "An error occurred");
-   }
- };
-   const mutation: any = useMutation(forgotPasswordRequest, {
-     onSuccess: (res: any) => {
-       console.log(res?.data);
-       if (res?.data) {
-         console.log("email sent!")
-       }
-     },
-   });
-
-   const onSubmit = () => mutation.mutate();
+  const onSubmit = () => {};
   return (
     <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
       <Link href={"/"}>
@@ -69,19 +52,20 @@ export default function ForgotPassword() {
           Diadem🗂️
         </div>
       </Link>
+
       <Card className="w-[90%] lg:w-[40%] flex flex-col items-center pb-8 lg:px-4">
         <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[100%]">
-          <CardTitle>Forgot Password</CardTitle>
+          <CardTitle>Verify Email</CardTitle>
           <CardDescription className="text-center">
-            Please enter your email to reset your password
+            Please enter your email and One Time Pin
           </CardDescription>
         </CardHeader>
         <CardContent className="w-[100%] mt-4">
-          {mutation.isError && (
+          {/* {mutation.isError && (
             <p className="text-center pb-2 text-red-500">
               {mutation?.error?.message || "An error occured during sign up"}
             </p>
-          )}
+          )} */}
           <form action="submit" className="flex flex-col gap-8 w-[100%]">
             <div className="flex flex-col w-full gap-2">
               <Label htmlFor="email">Email</Label>
@@ -101,16 +85,31 @@ export default function ForgotPassword() {
                 <p className="text-red-500">{errors.email?.message}</p>
               )}
             </div>
+
+            <div className="flex flex-col w-full gap-2">
+              <Label htmlFor="otp">OTP</Label>
+              <Controller
+                name="otp"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    type="password"
+                    id="otp"
+                    placeholder="OTP"
+                  />
+                )}
+              />
+              {errors.otp && (
+                <p className="text-red-500">{errors.otp?.message}</p>
+              )}
+            </div>
             <Button
               variant="default"
               type="submit"
               onClick={handleSubmit(onSubmit)}
-              disabled={mutation.isLoading}
             >
-              {mutation.isLoading && (
-                <Loader variant="dots" size="md" className="mr-2" />
-              )}
-              Send recovery link
+              Verify email
             </Button>
           </form>
         </CardContent>

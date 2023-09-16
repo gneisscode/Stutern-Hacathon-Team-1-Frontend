@@ -75,6 +75,11 @@ const { dispatch} = useContext(Context);
 
   return (
     <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
+      <Link href={"/"}>
+        <div className="lg:text-[32px] font-bold text-[#0f172aff] mb-8">
+          Diadem🗂️
+        </div>
+      </Link>
       <Card className="w-[90%] lg:w-[40%] flex flex-col items-center lg:px-4">
         <CardHeader className="flex flex-col items-center mt-4 gap-4 w-[100%]">
           <CardTitle>Sign In</CardTitle>
@@ -136,7 +141,9 @@ const { dispatch} = useContext(Context);
               onClick={handleSubmit(onSubmit)}
               disabled={mutation.isLoading}
             >
-              {mutation.isLoading && <Loader variant="dots" size="md" className="mr-2"/>}
+              {mutation.isLoading && (
+                <Loader variant="dots" size="md" className="mr-2" />
+              )}
               Sign in
             </Button>
           </form>

@@ -66,14 +66,14 @@ const AddProducts = () => {
     ];
   return (
     <UserLayout>
-      <div className='text-[22px] text-slate-600 font-bold mb-8'>Add new product to inventory</div>
+      <div className='text-[22px] text-slate-600 font-bold mb-8'>Add new product</div>
       <div className="flex flex-col">
         <div className="flex flex-col justify-start gap-4">
           <Scan barcodeInputRef={barcodeInputRef}/>
           <div>
             <form
             //   onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col gap-8 w-[100%]"
+              className="flex flex-col gap-8 w-[100%] pb-[50px] px-0 lg:px-[100px]"
             >
 
                 {details.map((i,index) => {
@@ -93,6 +93,7 @@ const AddProducts = () => {
                             />
                           )}
                         />
+                
                         {/* {errors.{i.id} && (
                           <p className="text-red-500">
                             {errors.{i.id}?.message}
