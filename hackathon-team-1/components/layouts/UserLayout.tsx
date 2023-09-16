@@ -15,13 +15,16 @@ import Link from "next/link";
 import { Input } from "../ui/input";
 import { usePathname } from "next/navigation";
 import { Add, Cog, Inventory, Logout, Products } from "../icons";
-import { Context } from "@/context/Context";
+
 
 const UserLayout = ({ children }: any) => {
   const pathname = usePathname();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  const user = useContext(Context)
+  const user =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("user") as any) || null
+      : null;
 
   const nav = [
     {
@@ -133,7 +136,7 @@ const UserLayout = ({ children }: any) => {
             </div>
 
             <div className="hidden lg:block lg:text-[20px] font-medium">
-              Welcome back
+              Welcome back, {user !==null && user.user}
             </div>
           </div>
         </Header>
