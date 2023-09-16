@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AppShell,
   Navbar,
@@ -15,11 +15,13 @@ import Link from "next/link";
 import { Input } from "../ui/input";
 import { usePathname } from "next/navigation";
 import { Add, Cog, Inventory, Logout, Products } from "../icons";
+import { Context } from "@/context/Context";
 
 const UserLayout = ({ children }: any) => {
   const pathname = usePathname();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+  const user = useContext(Context)
 
   const nav = [
     {
@@ -131,7 +133,7 @@ const UserLayout = ({ children }: any) => {
             </div>
 
             <div className="hidden lg:block lg:text-[20px] font-medium">
-              Welcome back, user
+              Welcome back, {user.user}
             </div>
           </div>
         </Header>
