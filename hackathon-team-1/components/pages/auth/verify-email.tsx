@@ -15,6 +15,7 @@ import * as yup from "yup";
 import { useMutation } from "@tanstack/react-query";
 import { axiosWithoutToken } from "@/utils/axios";
 import Link from "next/link";
+import { Loader } from "@mantine/core";
 
 export default function VerifyEmail() {
   const defaultValues = {
@@ -135,6 +136,9 @@ export default function VerifyEmail() {
               type="submit"
               onClick={handleSubmit(onSubmit)}
             >
+              {mutation.isLoading && (
+                <Loader variant="dots" size="md" className="mr-2" />
+              )}
               Verify email
             </Button>
           </form>
