@@ -61,7 +61,7 @@ const UserLayout = ({ children }: any) => {
                   isActive
                     ? "bg-[#e7e5e5] text-blue-300 bg-opacity-20 font-bold"
                     : ""
-                } flex gap-2 items-center hover:text-blue-300 p-2 rounded-sm font-semibold  text-[16px]`}
+                } flex gap-2 items-center hover:text-blue-300 p-2 rounded-sm font-semibold  text-[16px] transition-all ease-linear delay-150`}
               >
                 {i.icon} <Text>{i.item}</Text>
               </Link>

@@ -55,8 +55,7 @@ const BarcodeScanner: React.FC<QuaggaJSScannerProps> = ({onDetected}) => {
  // JSX for your component
  return (
    <div>
-      <div id="interactive" className="viewport" />
-    <div>Barcode scanner</div>
+     <div id="interactive" className="viewport h-[480px]" />
    </div>
  );
 }

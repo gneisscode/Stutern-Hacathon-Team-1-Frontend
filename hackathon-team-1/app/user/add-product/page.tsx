@@ -1,12 +1,14 @@
-import UserLayout from '@/components/layouts/UserLayout'
-import React from 'react'
+import AddProducts from "@/components/pages/user/AddProducts";
+import { ResultsProvider } from "@/context/ResultContext";
+import { NextPage } from "next";
+import React from "react";
 
-const AddProducts = () => {
+const AddProductsPage: NextPage = () => {
   return (
-    <UserLayout>
-      <div>AddProducts</div>
-    </UserLayout>
+    <ResultsProvider>
+      <AddProducts />
+    </ResultsProvider>
   );
-}
+};
 
-export default AddProducts
+export default AddProductsPage;

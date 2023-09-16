@@ -1,28 +1,40 @@
-"use client"
 import React, { useState } from "react";
 import BarcodeScanner from "./BarcodeScanner";
 import Result from "./Result";
+import { useResults } from "@/context/ResultContext";
 
-const Scan = () => {
+const Scan = ({barcodeInputRef}: any) => {
+  const { result, addResult, clearResult } = useResults();
   const [scanning, setScanning] = useState(false);
-  const [results, setResults]: any[] = useState([]);
 
   const toggleScanning = () => {
     setScanning(!scanning);
   };
 
-  const handleDetectedResult = (result:any) => {
-    setResults([...results, result]);
+  const handleDetectedResult = (newResult: any) => {
+    addResult(newResult);
+    if (barcodeInputRef && barcodeInputRef.current) {
+      barcodeInputRef.current.value = newResult.codeResult.code;
+    }
+  };
+
+  const handleClearResult = () => {
+    clearResult();
   };
 
   return (
     <div className="flex flex-col items-center w-[100%]">
-      <button onClick={toggleScanning}>{scanning ? "Stop" : "Start Scanning"}</button>
+      {scanning && <p className="text-center">Please place product barcode in frame and hold still</p>}
+      <button onClick={toggleScanning} className=" text-[18px] font-bold mt-4 hover:text-slate-600 transition-colors ease-linear delay-150">
+        {scanning
+          ? "Click to stop scanning  ║▌║█║▌│║▌║▌█"
+          : "Click to start scanning 🔎  ║▌║█║▌│║▌║▌█"}
+      </button>
+
       <ul className="results self-center flex flex-col w-[300px] justify-center items-center">
-        {results.map((result: any) => (
-          <Result key={result.codeResult.code} result={result} />
-        ))}
+        {result && <Result key={result.codeResult.code} result={result} />}
       </ul>
+      {result && <button onClick={handleClearResult}>Clear Result</button>}
       {scanning ? <BarcodeScanner onDetected={handleDetectedResult} /> : null}
     </div>
   );
