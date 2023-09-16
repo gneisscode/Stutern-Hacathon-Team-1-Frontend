@@ -49,7 +49,7 @@ const UserLayout = ({ children }: any) => {
 
     useEffect(() => {
 
-      if(!user || user.token){
+      if(!user || user.userToken){
          handleLogout();
       }
     }, []);
