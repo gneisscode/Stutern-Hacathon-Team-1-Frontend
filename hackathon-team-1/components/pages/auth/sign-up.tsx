@@ -63,7 +63,7 @@ export default function SignUp() {
  const signupRequest = async () => {
    try {
      const response = await axiosWithoutToken.post("/user/signup", getValues());
-     console.log(response.data);
+     console.log(response);
    } catch (error: any) {
      console.log(error);
      throw new Error(error?.response?.data?.message || "An error occurred");
@@ -72,10 +72,11 @@ export default function SignUp() {
 
   const mutation: any = useMutation(signupRequest, {
     onSuccess: (res: any) => {
-      console.log(res?.data);
-      if (res?.data) {
-        router.push("/auth/sign-in");
-      }
+      console.log("hello");
+      router.push("/auth/sign-in");
+      // if (res?.data) {
+        
+      // }
     },
   });
 
