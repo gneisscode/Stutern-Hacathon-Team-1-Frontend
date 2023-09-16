@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import { Input } from "../ui/input";
 import { usePathname } from "next/navigation";
+import { Logout } from "../icons";
 
 const UserLayout = ({children}:any) => {
   const pathname = usePathname();
@@ -23,6 +24,7 @@ const UserLayout = ({children}:any) => {
   const nav = [
     { item: "Inventory overview", path: "/user/inventory-overview" },
     { item: "All products", path: "/user/all-products" },
+    { item: "Add new product", path: "/user/add-product" },
     { item: "Settings", path: "/user/settings" },
   ];
   return (
@@ -43,7 +45,7 @@ const UserLayout = ({children}:any) => {
           hiddenBreakpoint="sm"
           hidden={!opened}
           width={{ sm: 200, lg: 300 }}
-          className="text-white bg-[#0f172aff]"
+          className="text-white bg-[#0f172aff] flex flex-col"
         >
           {nav.map((i, index) => {
              const isActive = pathname === i.path;
@@ -59,6 +61,9 @@ const UserLayout = ({children}:any) => {
               </Link>
             );
           })}
+
+          <div className="mt-auto flex gap-2 items-center font-semibold text-[16px]"> 
+          <Logout/>Logout</div>
         </Navbar>
       }
       // aside={
@@ -110,7 +115,7 @@ const UserLayout = ({children}:any) => {
               <Input placeholder="Search product" className="h-[22px] lg:h-[45px] text-black"/>
             </div>
 
-            <div className=" text-[12px] lg:text-[24px] font-medium">Welcome back, user</div>
+            <div className=" text-[12px] lg:text-[20px] font-medium">Welcome back, user</div>
           </div>
         </Header>
       }
