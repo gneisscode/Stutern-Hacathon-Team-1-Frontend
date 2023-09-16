@@ -64,7 +64,6 @@ export default function SignUp() {
    try {
      const response = await axiosWithoutToken.post("/user/signup", getValues());
      console.log(response);
-     router.push("/auth/sign-in");
    } catch (error: any) {
      console.log(error);
      throw new Error(error?.response?.data?.message || "An error occurred");
