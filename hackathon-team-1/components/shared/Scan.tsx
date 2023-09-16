@@ -25,7 +25,7 @@ const Scan = ({barcodeInputRef}: any) => {
   return (
     <div className="flex flex-col items-center w-[100%]">
       {scanning && <p className="text-center">Please place product barcode in frame and hold still</p>}
-      <button onClick={toggleScanning} className=" text-[18px] font-bold mt-4 hover:text-slate-600 transition-colors ease-linear delay-150">
+      <button onClick={toggleScanning} className=" text-center leading-[32px] text-[18px] font-bold mt-4 hover:text-slate-600 transition-colors ease-linear delay-150">
         {scanning
           ? "Click to stop scanning  ║▌║█║▌│║▌║▌█"
           : "Click to start scanning 🔎  ║▌║█║▌│║▌║▌█"}

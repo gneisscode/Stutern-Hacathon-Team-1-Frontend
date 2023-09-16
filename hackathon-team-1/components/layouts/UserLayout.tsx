@@ -115,8 +115,8 @@ const UserLayout = ({ children }: any) => {
               />
             </MediaQuery>
 
-            <Text className="lg:text-[38px] font-bold text-blue-500">
-              SIMS ✅
+            <Text className="lg:text-[32px] font-bold text-blue-500">
+            Diadem✅
             </Text>
 
             <div className="w-[30%] lg:w-[40%]">

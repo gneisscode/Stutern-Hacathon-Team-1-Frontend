@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import {axiosWithoutToken } from "@/utils/axios";
 import { useContext } from "react";
 import { Context } from "@/context/Context";
+import { Loader } from "@mantine/core";
 
 
 
@@ -135,6 +136,7 @@ const { dispatch} = useContext(Context);
               onClick={handleSubmit(onSubmit)}
               disabled={mutation.isLoading}
             >
+              {mutation.isLoading && <Loader variant="dots" size="md" className="mr-2"/>}
               Sign in
             </Button>
           </form>

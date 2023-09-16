@@ -27,7 +27,7 @@ const InventoryTable = () => {
       >
         <thead>
           <tr>
-            <th>Product</th>
+            <th>Name</th>
             <th>Barcode</th>
             <th>Category</th>
             <th>Price (₦)</th>
