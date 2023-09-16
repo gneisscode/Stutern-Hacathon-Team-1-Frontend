@@ -133,7 +133,7 @@ const UserLayout = ({ children }: any) => {
             </div>
 
             <div className="hidden lg:block lg:text-[20px] font-medium">
-              Welcome back, {user.user}
+              Welcome back, {user?.user}
             </div>
           </div>
         </Header>

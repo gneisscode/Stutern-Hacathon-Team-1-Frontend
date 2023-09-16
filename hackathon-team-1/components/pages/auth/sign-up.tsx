@@ -40,12 +40,19 @@ export default function SignUp() {
       .string()
       .email("Enter a valid email")
       .required("Enter your email"),
-    password: yup.string().required("Enter your password"),
+    password: yup
+      .string()
+      .required("Enter your password")
+      .matches(
+        /^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z]).{8,}$/,
+        "Password must be at least 8 characters long, contain one uppercase letter, and at least one number."
+      ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password")], "Passwords must match")
       .required("Confirm password"),
   });
+
 
 
    const {
