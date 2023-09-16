@@ -59,9 +59,9 @@ const UserLayout = ({ children }: any) => {
                 key={index}
                 className={`${
                   isActive
-                    ? "bg-[#e7e5e5] text-blue-500 bg-opacity-20 font-bold"
+                    ? "bg-[#e7e5e5] text-blue-300 bg-opacity-20 font-bold"
                     : ""
-                } flex gap-2 items-center hover:text-blue-500 p-2 rounded-sm font-semibold  text-[16px]`}
+                } flex gap-2 items-center hover:text-blue-300 p-2 rounded-sm font-semibold  text-[16px]`}
               >
                 {i.icon} <Text>{i.item}</Text>
               </Link>
