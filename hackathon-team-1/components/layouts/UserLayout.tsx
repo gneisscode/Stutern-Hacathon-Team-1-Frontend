@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import {
   AppShell,
@@ -14,18 +14,22 @@ import {
 import Link from "next/link";
 import { Input } from "../ui/input";
 import { usePathname } from "next/navigation";
-import { Logout } from "../icons";
+import { Add, Cog, Inventory, Logout, Products } from "../icons";
 
-const UserLayout = ({children}:any) => {
+const UserLayout = ({ children }: any) => {
   const pathname = usePathname();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
 
   const nav = [
-    { item: "Inventory overview", path: "/user/inventory-overview" },
-    { item: "All products", path: "/user/all-products" },
-    { item: "Add new product", path: "/user/add-product" },
-    { item: "Settings", path: "/user/settings" },
+    {
+      item: "Inventory overview",
+      path: "/user/inventory-overview",
+      icon: <Inventory />,
+    },
+    { item: "All products", path: "/user/all-products", icon: <Products /> },
+    { item: "Add new product", path: "/user/add-product", icon: <Add /> },
+    { item: "Settings", path: "/user/settings", icon: <Cog /> },
   ];
   return (
     <AppShell
@@ -48,22 +52,26 @@ const UserLayout = ({children}:any) => {
           className="text-white bg-[#0f172aff] flex flex-col"
         >
           {nav.map((i, index) => {
-             const isActive = pathname === i.path;
+            const isActive = pathname === i.path;
             return (
               <Link
                 href={i.path}
                 key={index}
                 className={`${
-                  isActive ? "bg-[#e7e5e5] text-blue-500 bg-opacity-20 font-bold" : ""
-                } hover:text-blue-500 p-2 rounded-sm font-semibold  text-[16px]`}
+                  isActive
+                    ? "bg-[#e7e5e5] text-blue-500 bg-opacity-20 font-bold"
+                    : ""
+                } flex gap-2 items-center hover:text-blue-500 p-2 rounded-sm font-semibold  text-[16px]`}
               >
-                <Text>{i.item}</Text>
+                {i.icon} <Text>{i.item}</Text>
               </Link>
             );
           })}
 
-          <div className="mt-auto flex gap-2 items-center font-semibold text-[16px]"> 
-          <Logout/>Logout</div>
+          <div className="mt-auto flex gap-2 items-center font-semibold text-[16px]">
+            <Logout />
+            Logout
+          </div>
         </Navbar>
       }
       // aside={
@@ -112,10 +120,15 @@ const UserLayout = ({children}:any) => {
             </Text>
 
             <div className="w-[30%] lg:w-[40%]">
-              <Input placeholder="Search product" className="h-[22px] lg:h-[45px] text-black"/>
+              <Input
+                placeholder="Search product"
+                className="h-[22px] lg:h-[45px] text-black"
+              />
             </div>
 
-            <div className="hidden lg:block lg:text-[20px] font-medium">Welcome back, user</div>
+            <div className="hidden lg:block lg:text-[20px] font-medium">
+              Welcome back, user
+            </div>
           </div>
         </Header>
       }
