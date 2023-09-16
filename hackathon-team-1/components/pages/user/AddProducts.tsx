@@ -78,7 +78,7 @@ const AddProducts = () => {
 
                 {details.map((i,index) => {
                     return (
-                      <div className="flex flex-col w-full gap-2">
+                      <div className="flex flex-col w-full gap-2" key={index}>
                         <Label htmlFor={i.id}>{i.name}</Label>
                         <Controller
                           name={i.id}
