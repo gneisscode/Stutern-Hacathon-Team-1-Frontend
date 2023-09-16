@@ -91,14 +91,13 @@ const UserLayout = ({ children }: any) => {
             );
           })}
 
-          <Link
-            href={"/"}
+          <div
             className="mt-auto flex gap-2 items-center font-semibold text-[16px]"
             onClick={()=> {handleLogout()}}
           >
             <Logout />
             Logout
-          </Link>
+          </div>
         </Navbar>
       }
       // aside={
