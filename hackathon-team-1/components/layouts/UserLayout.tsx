@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   AppShell,
   Navbar,
@@ -15,6 +15,7 @@ import Link from "next/link";
 import { Input } from "../ui/input";
 import { usePathname } from "next/navigation";
 import { Add, Cog, Inventory, Logout, Products } from "../icons";
+import { Context } from "@/context/Context";
 
 
 const UserLayout = ({ children }: any) => {
@@ -36,6 +37,23 @@ const UserLayout = ({ children }: any) => {
     { item: "Add new product", path: "/user/add-product", icon: <Add /> },
     { item: "Settings", path: "/user/settings", icon: <Cog /> },
   ];
+
+  const { dispatch } = useContext(Context);
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    if (typeof window !== "undefined") {
+      window.location.href = "/auth/sign-in";
+    }
+  };
+
+    useEffect(() => {
+
+      if(!user || user.token){
+         handleLogout();
+      }
+    }, []);
+
   return (
     <AppShell
       styles={{
@@ -76,6 +94,7 @@ const UserLayout = ({ children }: any) => {
           <Link
             href={"/"}
             className="mt-auto flex gap-2 items-center font-semibold text-[16px]"
+            onClick={()=> {handleLogout()}}
           >
             <Logout />
             Logout
