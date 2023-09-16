@@ -50,6 +50,9 @@ export default function VerifyEmail() {
         getValues()
       );
       console.log(response);
+       if (typeof window !== "undefined") {
+         window.location.href = "/auth/sign-in";
+       }
     } catch (error: any) {
       console.log(error);
       throw new Error(error?.response?.data?.message || "An error occurred");

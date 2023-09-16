@@ -54,7 +54,7 @@ const { dispatch} = useContext(Context);
    try {
      const response = await axiosWithoutToken.post("/user/login", getValues());
      console.log(response.data);
-     dispatch({ type: "LOGIN_SUCCESS", payload: response?.data });
+     dispatch({ type: "LOGIN_SUCCESS", payload: response?.data.data});
      if(typeof window !== "undefined"){
       window.location.href = "/user/inventory-overview";
 

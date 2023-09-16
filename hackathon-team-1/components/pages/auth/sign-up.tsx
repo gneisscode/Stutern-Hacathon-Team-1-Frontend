@@ -64,6 +64,9 @@ export default function SignUp() {
    try {
      const response = await axiosWithoutToken.post("/user/signup", getValues());
      console.log(response);
+     if (typeof window !== "undefined") {
+       window.location.href = "/auth/verify-email";
+     }
    } catch (error: any) {
      console.log(error);
      throw new Error(error?.response?.data?.message || "An error occurred");
