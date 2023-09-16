@@ -51,7 +51,7 @@ const { dispatch} = useContext(Context);
 
  const loginRequest = async () => {
    try {
-     const response = await axiosWithoutToken.post("/user/signin", getValues());
+     const response = await axiosWithoutToken.post("/user/login", getValues());
      console.log(response.data);
    } catch (error: any) {
     console.log(error);

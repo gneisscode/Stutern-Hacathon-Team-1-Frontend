@@ -12,8 +12,11 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import Link from "next/link";
+import { Input } from "../ui/input";
+import { usePathname } from "next/navigation";
 
 const UserLayout = ({children}:any) => {
+  const pathname = usePathname();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
 
@@ -40,32 +43,54 @@ const UserLayout = ({children}:any) => {
           hiddenBreakpoint="sm"
           hidden={!opened}
           width={{ sm: 200, lg: 300 }}
+          className="text-white bg-[#0f172aff]"
         >
           {nav.map((i, index) => {
+             const isActive = pathname === i.path;
             return (
-              <Link href={i.path} key={index}>
+              <Link
+                href={i.path}
+                key={index}
+                className={`${
+                  isActive ? "bg-[#e7e5e5] text-blue-500 bg-opacity-20 font-bold" : ""
+                } hover:text-blue-500 p-2 rounded-sm font-semibold  text-[16px]`}
+              >
                 <Text>{i.item}</Text>
               </Link>
             );
           })}
         </Navbar>
       }
-      aside={
-        <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-          <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-            <Text>Application sidebar</Text>
-          </Aside>
-        </MediaQuery>
-      }
-      footer={
-        <Footer height={60} p="md">
-          Application footer
-        </Footer>
-      }
+      // aside={
+      //   <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+      //     <Aside
+      //       p="md"
+      //       hiddenBreakpoint="sm"
+      //       width={{ sm: 200, lg: 300 }}
+      //       className="text-white bg-[#0f172aff]"
+      //     >
+      //       <Text>Application sidebar</Text>
+      //     </Aside>
+      //   </MediaQuery>
+      // }
+      // footer={
+      //   <Footer height={60} p="md">
+      //     Application footer
+      //   </Footer>
+      // }
       header={
-        <Header height={{ base: 50, md: 70 }} p="md">
+        <Header
+          height={{ base: 50, md: 100 }}
+          p="md"
+          className="text-white bg-[#0f172aff]"
+        >
           <div
-            style={{ display: "flex", alignItems: "center", height: "100%" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "100%",
+              justifyContent: "space-between",
+            }}
           >
             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
               <Burger
@@ -77,7 +102,15 @@ const UserLayout = ({children}:any) => {
               />
             </MediaQuery>
 
-            <Text>Inventory Management System</Text>
+            <Text className="lg:text-[38px] font-bold text-blue-500">
+              SIMS ✅
+            </Text>
+
+            <div className="w-[30%] lg:w-[40%]">
+              <Input placeholder="Search product" className="h-[22px] lg:h-[45px] text-black"/>
+            </div>
+
+            <div className=" text-[12px] lg:text-[24px] font-medium">Welcome back, user</div>
           </div>
         </Header>
       }

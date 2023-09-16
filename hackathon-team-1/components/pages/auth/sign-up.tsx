@@ -23,20 +23,27 @@ export default function SignUp() {
   const router = useRouter();
 
   const defaultValues = {
-    name: "",
-    surname: "",
+    firstName: "",
+    lastName: "",
+    username: "",
     email: "",
     password: "",
+    confirmPassword:"",
   };
 
   const validationSchema = yup.object().shape({
-    name: yup.string().required("Enter your first name"),
-    surname: yup.string().required("Enter your surname"),
+    firstName: yup.string().required("Enter your first name"),
+    lastName: yup.string().required("Enter your surname"),
+    username: yup.string().required("Enter a username"),
     email: yup
       .string()
       .email("Enter a valid email")
       .required("Enter your email"),
     password: yup.string().required("Enter your password"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password")], "Passwords must match")
+      .required("Confirm password"),
   });
 
 
@@ -89,35 +96,59 @@ export default function SignUp() {
           )}
           <form action="submit" className="flex flex-col gap-8 w-[100%]">
             <div className="flex flex-col w-full gap-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="firstName">First Name</Label>
               <Controller
-                name="name"
-                control={control}
-                render={({ field }) => (
-                  <Input {...field} type="name" id="name" placeholder="Name" />
-                )}
-              />
-              {errors.name && (
-                <p className="text-red-500">{errors.name?.message}</p>
-              )}
-            </div>
-
-            <div className="flex flex-col w-full gap-2">
-              <Label htmlFor="surname">Surname</Label>
-              <Controller
-                name="surname"
+                name="firstName"
                 control={control}
                 render={({ field }) => (
                   <Input
                     {...field}
-                    type="surname"
-                    id="surname"
-                    placeholder="Surname"
+                    type="text"
+                    id="firstName"
+                    placeholder="First Name"
                   />
                 )}
               />
-              {errors.surname && (
-                <p className="text-red-500">{errors.surname?.message}</p>
+              {errors.firstName && (
+                <p className="text-red-500">{errors.firstName?.message}</p>
+              )}
+            </div>
+
+            <div className="flex flex-col w-full gap-2">
+              <Label htmlFor="lastName">Last Name</Label>
+              <Controller
+                name="lastName"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    type="text"
+                    id="lastName"
+                    placeholder="Last Name"
+                  />
+                )}
+              />
+              {errors.lastName && (
+                <p className="text-red-500">{errors.lastName?.message}</p>
+              )}
+            </div>
+
+            <div className="flex flex-col w-full gap-2">
+              <Label htmlFor="username">Username</Label>
+              <Controller
+                name="username"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                  />
+                )}
+              />
+              {errors.username && (
+                <p className="text-red-500">{errors.username?.message}</p>
               )}
             </div>
             <div className="flex flex-col w-full gap-2">
@@ -154,6 +185,27 @@ export default function SignUp() {
               />
               {errors.password && (
                 <p className="text-red-500">{errors.password?.message}</p>
+              )}
+            </div>
+
+            <div className="flex flex-col w-full gap-2">
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Controller
+                name="confirmPassword"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm Password"
+                  />
+                )}
+              />
+              {errors.confirmPassword && (
+                <p className="text-red-500">
+                  {errors.confirmPassword?.message}
+                </p>
               )}
             </div>
 

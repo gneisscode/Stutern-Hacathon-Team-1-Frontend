@@ -85,7 +85,7 @@ export default function ResetPassword() {
                 render={({ field }) => (
                   <Input
                     {...field}
-                    type="confirmPassword"
+                    type="password"
                     id="confirmPassword"
                     placeholder="Confirm Password"
                   />
