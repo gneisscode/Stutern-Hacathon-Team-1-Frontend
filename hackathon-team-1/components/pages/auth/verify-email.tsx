@@ -43,8 +43,31 @@ export default function VerifyEmail() {
     resolver: yupResolver(validationSchema),
   });
 
+  const verifyRequest = async () => {
+    try {
+      const response = await axiosWithoutToken.post(
+        "/user/verify_otp",
+        getValues()
+      );
+      console.log(response);
+    } catch (error: any) {
+      console.log(error);
+      throw new Error(error?.response?.data?.message || "An error occurred");
+    }
+  };
 
-  const onSubmit = () => {};
+  const mutation: any = useMutation(verifyRequest, {
+    onSuccess: (res: any) => {
+      console.log("hello");
+
+      // if (res?.data) {
+
+      // }
+    },
+  });
+
+
+  const onSubmit = () => {mutation.mutate};
   return (
     <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
       <Link href={"/"}>
