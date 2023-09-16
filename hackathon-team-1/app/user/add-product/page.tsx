@@ -1,9 +1,12 @@
+import UserLayout from '@/components/layouts/UserLayout'
 import React from 'react'
 
 const AddProducts = () => {
   return (
-    <div>AddProducts</div>
-  )
+    <UserLayout>
+      <div>AddProducts</div>
+    </UserLayout>
+  );
 }
 
 export default AddProducts
