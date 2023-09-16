@@ -107,7 +107,7 @@ const UserLayout = ({children}:any) => {
               />
             </MediaQuery>
 
-            <Text className="text-[12px] lg:text-[38px] font-bold text-blue-500">
+            <Text className="lg:text-[38px] font-bold text-blue-500">
               SIMS ✅
             </Text>
 
@@ -115,7 +115,7 @@ const UserLayout = ({children}:any) => {
               <Input placeholder="Search product" className="h-[22px] lg:h-[45px] text-black"/>
             </div>
 
-            <div className=" text-[10px] lg:text-[20px] font-medium">Welcome back, user</div>
+            <div className="hidden lg:block lg:text-[20px] font-medium">Welcome back, user</div>
           </div>
         </Header>
       }
