@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="description" content="Automated management system" />
+        <meta name="description" content="Simple management system" />
         <meta name="title" content="Inventory Management" />
       </head>
       <ContextProvider>

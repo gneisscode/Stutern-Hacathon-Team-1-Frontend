@@ -15,7 +15,7 @@ export default function Home() {
     <div className="mt-[8px] lg:mt-[8px] px-4 lg:px-[52px] mb-[100px]">
       <nav className="flex items-center justify-between w-[100%] mb-4">
         <Link href={"/"} className="flex items-center">
-          <div className=" text-[20px] flex items-center mt-4 lg:text-[42px] font-bold text-[#0f172aff] mb-8">
+          <div className=" text-[20px] flex items-center mt-8 lg:text-[42px] font-bold text-[#0f172aff] mb-8">
             Diadem🗂️
           </div>
         </Link>
@@ -63,7 +63,7 @@ export default function Home() {
 
           <Link
             href={"/user/inventory-overview"}
-            className="w-[155px] mt-4 mr-auto ml-[18px]"
+            className="w-[155px] mt-4 mr-auto ml-[18px] mb-8"
           >
             <Button variant="default">View dashboard</Button>
           </Link>
