@@ -70,7 +70,7 @@ export default function VerifyEmail() {
   });
 
 
-  const onSubmit = () => {mutation.mutate};
+  const onSubmit = () => {mutation.mutate()};
   return (
     <div className="flex flex-col items-center py-8 lg:p-[82px] w-[100%] min-h-[100vh]">
       <Link href={"/"}>
